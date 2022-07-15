@@ -1,7 +1,13 @@
 
-const primerNumero =parseInt(prompt("ingrese la primer Nota"))
-const segundoNumero=parseInt(prompt("ingrese segundo nota"))
-const tercerNro=parseInt(prompt("ingrese tercerNro nota"))
 
-const promedio= (primerNumero*segundoNumero*tercerNro)/3
-console.log(`el promedio: ${promedio}`);
+mensaje = "Preograma que devuelve la suma desde cero hasta el numero ingresado por el usuario.";
+alert(mensaje);
+const Numero =parseInt(prompt("Ingrese el numero elegido: "))
+let suma=0;
+
+for (let i=0; i<=Numero; i++) { 
+
+    suma += i;
+}
+
+alert(`la Suma desde cero hasta el numero: ${Numero} es : ${suma}`);
