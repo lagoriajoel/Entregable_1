@@ -14,32 +14,81 @@ const CARRITO = [];
                   {
                      nombre: "hamburgesa Clasica",
                      precio: 800,
-                     ingredientes : ["lechuga", "mayonesa", "tomate","queso","huevo","papas fritas"]
+                     ingredientes : ["lechuga", "mayonesa", "tomate","queso","huevo","papas fritas"],
+                     tipo: "simple"
                   },
                   
                   {
                      nombre: "hamburgesa chesse",
                      precio: 900,
-                    ingredientes : ["chedar x2", "mayonesa", "cebolla en cubos","ketchup","papas fritas"]
+                    ingredientes : ["chedar x2", "mayonesa", "cebolla en cubos","ketchup","papas fritas"],
+                    tipo: "simple"
 
                   },
                   {
                      nombre: "hamburgesa yankke",
                      precio: 1000,
-                    ingredientes : ["chedar x2", "bacon x2", "pepinillos","barbacoa","papas fritas"]
+                    ingredientes : ["chedar x2", "bacon x2", "pepinillos","barbacoa","papas fritas"],
+                    tipo: "simple"
+
 
                   },
                   {
                      nombre: "hamburgesa criolla",
                      precio: 1200,
-                    ingredientes : ["mayonesa de apio", "chimichurro", "mollejas al limon","papas fritas"]
+                    ingredientes : ["mayonesa de apio", "chimichurro", "mollejas al limon","papas fritas"],
+                    tipo: "simple"
+
 
 
                   },
                   {
                      nombre: "hamburgesa Mexicana",
                      precio: 1200,
-                    ingredientes : ["chedar x2", "bacon x2", "guacamole","mayonesa ranchera","papas fritas"]
+                    ingredientes : ["chedar x2", "bacon x2", "guacamole","mayonesa ranchera","papas fritas"],
+                    tipo: "simple"
+
+
+                  },
+                  {
+                     nombre: "hamburgesa Clasica MAX",
+                     precio: 1800,
+                     ingredientes : ["lechuga", "mayonesa", "tomate","queso","huevo","papas fritas"],
+                     tipo: "doble"
+                  },
+                  
+                  {
+                     nombre: "hamburgesa chesse MAX",
+                     precio: 1900,
+                    ingredientes : ["chedar x2", "mayonesa", "cebolla en cubos","ketchup","papas fritas"],
+                    tipo: "doble"
+
+                  },
+                  {
+                     nombre: "hamburgesa yankke MAX",
+                     precio: 1800,
+                    ingredientes : ["chedar x2", "bacon x2", "pepinillos","barbacoa","papas fritas"],
+                    tipo: "doble"
+
+
+
+                  },
+                  {
+                     nombre: "hamburgesa criolla MAX",
+                     precio: 1800,
+                    ingredientes : ["mayonesa de apio", "chimichurro", "mollejas al limon","papas fritas"],
+                    tipo: "doble"
+
+
+
+
+                  },
+                  {
+                     nombre: "hamburgesa Veggie",
+                     precio: 1200,
+                    ingredientes : ["chedar", "pepinillos", "mayonesa de apio","papas fritas"],
+                    tipo: "vegetariana"
+
 
                   }
    
@@ -50,6 +99,8 @@ const CARRITO = [];
                                  const eleccion = prompt(`
                                  Por favor eliga el numero segun corresponda 
                                  a su Hamburguesa :
+
+
                                  1. Nombre: ${menu[0].nombre}
                                  Precio: ${menu[0].precio}
                                  Ingredientes: ${menu[0].ingredientes}
@@ -95,7 +146,7 @@ const CARRITO = [];
                 
         }
    
-        tomarPedido()
+        //tomarPedido()
       
         function totalDeLaCompra(){
 
@@ -136,7 +187,46 @@ const CARRITO = [];
 
          }
 
-         console.log(CARRITO);
+         //console.log(CARRITO);
+         // Pre entrega Nro 1 : utilizacion de metodos de busqueda y filtrado
+          //pedomos al usuario que seleccione un tipo de hamburgesa para el filtrado
+         const tipo = prompt(`selecciono un tipo de menu:                  
+                           1. hamburgesas simples.
+                           2. hamburguesas Dobles.
+                           3. hamburgesas Vegeterianas.`)
+
+
+         // capturamos el resultado en "tipo" y se realiza la busqueda con filter
+        if (tipo==="1") {                                             
+         const resultado = menu.filter(menu => menu.tipo=="simple")                
+         
+       // se muestra en consola el resultado de la busqueda. la idea es a futura colocar botones para el filtrado y mostrar en la ventana las opciones 
+         resultado.forEach(element => {console.log(element.nombre, element.precio, element.ingredientes.join()) })
+         
+                 
+        }
+        else if (tipo==="2") {
+         const resultado = menu.filter(menu => menu.tipo=="doble")
+         
+         resultado.forEach(element => {console.log(element.nombre, element.precio) })
+        }
+        else if (tipo==="3") {
+         const resultado = menu.filter(menu => menu.tipo=="vegetariana")
+         
+         resultado.forEach(element => {console.log(element.nombre, element.precio) })
+        }
+
+
+       
+        
+       
+
+
+
+        
+
+
+
       
       
 
