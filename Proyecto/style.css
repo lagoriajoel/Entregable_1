@@ -1,19 +1,47 @@
-*{
 
-   padding: 0;
+* {
    margin: 0;
+   padding: 0;
+   font-family: "Poppins", sans-serif;
    box-sizing: border-box;
-}
+   scroll-behavior: smooth;
+   scroll-padding-top: 2rem;
+   list-style: none;
+   text-decoration: none;
+ }
+
+
+body.active {
+   background-color: #1e1c2a;
+ 
+ }
+
+
 body {
-   background-color: #151320;
+   background-color: #e7e6ee;
    height: 100vh;
    display: grid;
    place-items: center center;
    font-family: 'sans-serif'; 
 
 }
+.logo {
+   font-size: 1.2rem;
+   font-weight: 600;
+   color: black;
+ }
+.navbar {
+   display: flex;
+ }
+ .navbar a {
+   font-size: 1rem;
+   padding: 10px 20px;
+   color:aqua;
+   font-weight: 500;
+ }
 .cards {
- display: grid;
+ margin-top: 50px;
+   display: grid;
  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
  padding: 20px;
  grid-gap: 40px;
@@ -62,3 +90,29 @@ padding: 20px 10px;
    line-height: 30px;
    font-weight: 400;  
 }
+.navbar {
+   position: fixed;
+   background-color: rgb(226, 222, 217);
+   width: 100%;
+   top: 0;
+   right: 0;
+   z-index: 1000;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 18px 100px;
+   box-shadow: 0 0.5rem 50rem rgba(0, 0, 0, 0.1);
+ }
+ header {
+   position: fixed;
+   width: 100%;
+   top: 0;
+   right: 0;
+   z-index: 1000;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+  
+   padding: 18px 100px;
+   box-shadow: 0 0.5rem 50rem rgba(0, 0, 0, 0.1);
+ }
