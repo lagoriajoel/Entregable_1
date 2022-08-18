@@ -4,45 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+   <!-- estilos-->
     <link rel="stylesheet" href="style.css">
     <!-- Box Icons -->
     <link rel="stylesheet"
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <title>Document</title>
+
+  
+    <title>My Burger</title>
 </head>
 <body>
-  <div class="container">
 
-          <!-- Navbar -->
-    <header>
-      <a href="#" class="logo">MyBurger</a>
-      <div class="bx bx-menu" id="menu-icon"></div>
+  <section class="menu" id="menu">
+        <!-- btn mostrarCarrito -->
+    <div class="botonMostrar">
+      <button class="btnmostrarCart" onclick="mostrarCarrito()">Mostrar carrito</button>
+     </div>             
 
-      <ul class="navbar">
-          <li><a href="">Inicio</a></li>
-          <li><a href="">Quienes Somos</a></li>
-          <li><a href="#">Menu</a></li>
+    <!-- title -->
+    <div class="title">
+      <h2>MyBurger</h2>
+      <div class="underline"></div>
+    </div>
+       
+      <!-- botones de filtrado-->
+      <div class="ContenedorBotones" id="ContenedorBotones">
+        <button class="btnFiltro" onclick="filterProduct('todas')">Todas</button>
+        <button class="btnFiltro" onclick="filterProduct('simple')">
+          SIMPLE
+        </button>
+        <button class="btnFiltro" onclick="filterProduct('doble')">
+        DOBLE
+        </button>
+        <button class="btnFiltro" onclick="filterProduct('veggie')">
+         VEGGIE
+        </button>
         
-          <li><a href="">Contacto</a></li>
-          <!-- Modo oscuro -->
-          <div class="bx bx-moon" id="darkmode"></div>
-      </ul>
-    </header>
-          <!-- card hamburguesas-->
+      </div>
+       <!-- carrito de compras-->
+       <div class="conteinerCart" id="conteinerCart">
+
+      </div>
+   
+    
+    <!-- card hamburguesas-->
             <div class="cards" id="cards">
               
 
             </div>
-              
-  
- </div>
+    <!-- carrito de compras-->
+           
+ 
+
+ </section>
+ 
  
 </body>
- <script  type="module" src="miArchivo.js"></script>
- <script  type="module" src="productos.js"></script>
+
+ <!-- archivos js-->
+ <script  src="miArchivo.js"></script>
+
 
  
-
-
 </html>

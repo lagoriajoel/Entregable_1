@@ -25,20 +25,8 @@ body {
    font-family: 'sans-serif'; 
 
 }
-.logo {
-   font-size: 1.2rem;
-   font-weight: 600;
-   color: black;
- }
-.navbar {
-   display: flex;
- }
- .navbar a {
-   font-size: 1rem;
-   padding: 10px 20px;
-   color:aqua;
-   font-weight: 500;
- }
+
+
 .cards {
  margin-top: 50px;
    display: grid;
@@ -46,22 +34,29 @@ body {
  padding: 20px;
  grid-gap: 40px;
 
+
 }
 .card{
  background-color: #1c1b29;
  border-radius: 20px;
  box-shadow: 0 0 30px rgba(0, 0, 0, 18);
+ transition: all 0.3s linear;
+ 
 }
+
 .container {
 
    position: relative;
+   padding: 10px;
+ margin: 5px;
 }
 img {
    width: 100%; 
    display: block;
    border-radius: 20px 20px 0 0;
+   
 }
-.container:after{
+.contenedor:after{
 
    content: "";
    height: 100%;
@@ -70,7 +65,7 @@ img {
    left: 0;
    top: 0;
    border-radius: 20px 20px 0 0;
-   opacity: 0.7;
+   /* opacity: 0.7; */
 }
 
 .details {
@@ -90,29 +85,121 @@ padding: 20px 10px;
    line-height: 30px;
    font-weight: 400;  
 }
-.navbar {
-   position: fixed;
-   background-color: rgb(226, 222, 217);
+
+ .ContenedorBotones{
+
    width: 100%;
-   top: 0;
-   right: 0;
-   z-index: 1000;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding: 18px 100px;
-   box-shadow: 0 0.5rem 50rem rgba(0, 0, 0, 0.1);
- }
- header {
-   position: fixed;
-   width: 100%;
-   top: 0;
-   right: 0;
-   z-index: 1000;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
   
-   padding: 18px 100px;
-   box-shadow: 0 0.5rem 50rem rgba(0, 0, 0, 0.1);
+
  }
+ .btnFiltro{
+   text-transform: uppercase;
+   background: transparent;
+   color: black;
+   padding: 0.375rem 0.75rem;
+   letter-spacing: 0.25rem;
+   display: inline-block;
+   transition: all 0.3s linear;
+   font-size: 0.875rem;
+   border: 2px solid black;
+   cursor: pointer;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+   border-radius: 0.5rem;
+   margin-right: 5px;
+ }
+ .btnFiltro:hover{
+
+   background: rgb(157, 200, 78);
+   color: white;
+ }
+ .addcarrito{
+  color: #6759ff;
+  font-weight: 600;
+  margin-top: auto;
+  height:2.5em;
+  width: 100%;
+ }
+ .addcarrito:hover{
+  background: rgb(157, 200, 78);
+  color: white;
+ }
+ .menu {
+   padding: 5rem 0;
+ }
+ .title {
+   text-align: center;
+   margin-bottom: 2rem;
+   font-size: xx-large;
+ }
+ .underline {
+   width: 5rem;
+   height: 0.25rem;
+   background: black;
+   margin-left: auto;
+   margin-right: auto;
+ }
+ .ContenedorBotones {
+   margin-bottom: 4rem;
+   display: flex;
+   justify-content: center;
+   
+ }
+ .hide {
+   display: none;
+ }
+ .active {
+   background-color: #6759ff;
+   color: #ffffff;
+ }
+ .container {
+   padding-top: 1em;
+   color: #110f29;
+ }
+ .container h5 {
+   font-weight: 500;
+   color: #ffffff;
+}
+h6 {
+   color: #e7e6ee;
+   font-weight: 500;
+}
+.conteinerCart {
+ 
+  background-color: #ffffff;
+  position:fixed;
+ 
+  margin-left: 33%;
+  margin-right: 33%;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+    padding: 20px;
+    grid-gap: 40px;
+    border-radius: 0.5rem; 
+
+}
+.btnmostrarCart{
+  text-transform: uppercase;
+   background: transparent;
+   color: black;
+   padding: 0.375rem 0.75rem;
+   letter-spacing: 0.25rem;
+  
+   transition: all 0.3s linear;
+   font-size: 0.875rem;
+   border: 2px solid black;
+   cursor: pointer;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+   border-radius: 0.5rem;
+   margin-right: 5px;
+  
+}
+.btnmostrarCart:hover { 
+  background: rgb(157, 200, 78);
+  color: white;
+}
+.botonMostrar{
+  display: flex;
+  justify-content: flex-end;
+
+}
