@@ -150,6 +150,19 @@
                 document.getElementById("cards").appendChild(card);
               }
               //
+              
+              //agregamos el metodo addEventListener a los botones de filtrado
+
+              let btnTodas = document.getElementById("btnTodas");
+              let btnSimple = document.getElementById("btnSimple");
+              let btnDoble = document.getElementById("btnDoble");
+              let btnVeggie = document.getElementById("btnVeggie");
+              btnTodas.addEventListener("click", () =>filterProduct('todas'));
+              btnSimple.addEventListener("click", () =>filterProduct('simple'));
+              btnDoble.addEventListener("click", () =>filterProduct('doble'));
+              btnVeggie.addEventListener("click", () =>filterProduct('veggie'));
+
+
               function filterProduct(value) {
                 //traemos los botones
                 let buttons = document.querySelectorAll(".btnFiltro");
@@ -163,21 +176,17 @@
                 });
                 //seleccionamos todas las card
                 let elements = document.querySelectorAll(".card");
+                
                 //iteramos
+
+
                 elements.forEach((element) => {
-                
-                  if (value == "todas") {
-                    element.classList.remove("hide");
-                  } else {
-                
-                    if (element.classList.contains(value)) {
+
+                // aplicacion de operadores ternarios
+
+                  value == "todas" ?  element.classList.remove("hide") :  element.classList.contains(value) ? element.classList.remove("hide"): element.classList.add("hide");
                    
-                      element.classList.remove("hide");
-                    } else {
-                    
-                      element.classList.add("hide");
-                    }
-                  }
+                  
                 });
               }
             
@@ -194,17 +203,16 @@
                 carrito.push(prod);
                 console.log(carrito);
                 localStorage.setItem("carrito", JSON.stringify(carrito));
-
-              
-               
-               
                
               }
+
+             
 
            
 
               function mostrarCarrito(){
 
+          
                 if (carrito.length > 0) {
                   
                  
@@ -233,9 +241,10 @@
                       card.appendChild(container);
                   
                       //descripcion
-                      
-                      card.appendChild(container);
-                      document.getElementById("conteinerCart").appendChild(card);
+                      let bodyModal= document.getElementById("bodyModal");
+                  
+                      bodyModal.appendChild(card);
+                    
             
 
                 }
@@ -247,16 +256,67 @@
                // creamos un contenedor para el total del carrito de compras
                 const containerResultado= document.createElement("div");
                 let total = document.createElement("h5");
-                total.classList.add("nombreProducto");
+              
                 total.innerText = "Total a Pagar: " + resultado;
                 containerResultado.appendChild(total);
-                conteinerCart.appendChild(containerResultado);
+                let containerCart = document.getElementById("footerMod");
+                containerCart.appendChild(containerResultado);
               } 
-              else {
-                alert("No hay Productos en el carrito")
-              }
+              
 
               }
+
+            //boton cerrar modal
+            let cerrar = document.querySelectorAll(".close")[0];
+            let abrir = document.querySelectorAll(".btnmostrarCart")[0];
+            let modal = document.querySelectorAll(".modal")[0];
+            let modalCont = document.querySelectorAll(".conteinerCart")[0];
+            
+            //mostrar modal
+            abrir.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            if(carrito.length >0){
+
+            setTimeout(function () {
+
+            modalCont.style.opacity = "1";
+            modalCont.style.visibility = "visible";
+            modal.classList.toggle("modal-close");
+             
+            mostrarCarrito();
+            })}
+            else{Swal.fire({
+              title: 'El Carrito esta vacio',
+              text: '',
+              icon: 'warning',
+              confirmButtonText: 'volver'
+            })}
+
+            });
+            //cerrar modal
+            cerrar.addEventListener("click", function () {
+              modal.classList.toggle("modal-close");
+             
+              setTimeout(function () {  
+                modalCont.style.opacity = 0;
+                modalCont.style.visibility = "hidden";
+              },900);
+
+            });
+            // cerrar al hacer clic por fuera del modal
+            window.addEventListener("click", function (e) { 
+
+              if (e.target==modalCont) {
+                modal.classList.toggle("modal-close");
+             
+              setTimeout(function () {  
+                modalCont.style.opacity = 0;
+                modalCont.style.visibility = "hidden";
+              },900);
+              }
+            }); 
+
 
              
 
