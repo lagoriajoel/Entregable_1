@@ -1,112 +1,22 @@
 
 
 
-            const menu = {
-                datos: [
-                  {
-                    id:1, 
-                    nombre: "hamburgesa Clasica",
-                     precio: 800,
-                     ingredientes : ["lechuga", "mayonesa", "tomate","queso","huevo","papas fritas"],
-                     tipo: "simple",
-                     img: 'images/clasica.jpg'
-                  },
-                  
-                  {
-                    id:2, 
-                     nombre: "hamburgesa chesse",
-                     precio: 900,
-                    ingredientes : ["chedar x2", "mayonesa", "cebolla en cubos","ketchup","papas fritas"],
-                    tipo: "simple",
-                    img: 'images/chesse.jpg'
+        // metodo fetch para la solicitud de datos en el archivo datos.json
+            
               
-                  },
-                  {id:3, 
-                     nombre: "hamburgesa yankke",
-                     precio: 1000,
-                    ingredientes : ["chedar x2", "bacon x2", "pepinillos","barbacoa","papas fritas"],
-                    tipo: "simple",
-                    img: 'images/yankee.jpg'
-              
-              
-                  },
-                  {
-                    id:4, 
-                    nombre: "hamburgesa criolla",
-                    precio: 1200,
-                    ingredientes : ["mayonesa de apio", "chimichurro", "mollejas al limon","papas fritas"],
-                    tipo: "simple",
-                    img: "images/criolla.jpg"
-              
-              
-              
-                  },
-                  {
-                    id:5, 
-                    nombre: "hamburgesa Mexicana",
-                    precio: 1200,
-                    ingredientes : ["chedar x2", "bacon x2", "guacamole","mayonesa ranchera","papas fritas"],
-                    tipo: "simple",
-                    img: 'images/mexicana.jpg'
-              
-              
-                  },
-                  {
-                    id:6, 
-                     nombre: "hamburgesa Clasica MAX",
-                     precio: 1800,
-                     ingredientes : ["lechuga", "mayonesa", "tomate","queso","huevo","papas fritas"],
-                     tipo: "doble",
-                     img: 'images/doble.jpg'
-                  },
-                  
-                  {
-                    id:7, 
-                    nombre: "hamburgesa chesse MAX",
-                    precio: 1900,
-                    ingredientes : ["chedar x2", "mayonesa", "cebolla en cubos","ketchup","papas fritas"],
-                    tipo: "doble",
-                    img: 'images/doble.jpg'
-              
-                  },
-                  {
-                    id:8, 
-                    nombre: "hamburgesa yankke MAX",
-                    precio: 1800,
-                    ingredientes : ["chedar x2", "bacon x2", "pepinillos","barbacoa","papas fritas"],
-                    tipo: "doble",
-                    img: 'images/doble.jpg'
-              
-              
-              
-                  },
-                  {
-                    id:9, 
-                    nombre: "hamburgesa criolla MAX",
-                    precio: 1800,
-                    ingredientes : ["mayonesa de apio", "chimichurro", "mollejas al limon","papas fritas"],
-                    tipo: "doble",
-                    img: 'images/doble.jpg'
-              
-              
-              
-              
-                  },
-                  {
-                    id:10, 
-                    nombre: "hamburgesa Veggie",
-                    precio: 1200,
-                    ingredientes : ["chedar", "pepinillos", "mayonesa de apio","papas fritas"],
-                    tipo: "veggie",
-                    img: 'images/veggie.jpg'
-              
-              
-                  }
-              
-                ],}
-        
-
-            for (let i of menu.datos) {
+            fetch('datos.json')
+            .then(response => response.json())
+            .then(data => { console.log(data)
+            
+            mostrarCards(data)
+            
+            })
+      
+          
+              // metodo que muestra las card en el html
+             const mostrarCards=(data)=>{
+              for (let i of data) {
+                
                 //creamos un card para mostrar el producto del menu
                 let card = document.createElement("div");
               
@@ -136,7 +46,7 @@
                 document.getElementById("cards").appendChild(card);
                 //descripcion
                 let descripcion = document.createElement("h6");
-                descripcion.innerText =   i.ingredientes.join(" ");
+                descripcion.innerText =   i.descripcion;
                 container.appendChild(descripcion);
                 card.appendChild(container);
                 document.getElementById("cards").appendChild(card);
@@ -149,7 +59,7 @@
                 card.appendChild(container);
                 document.getElementById("cards").appendChild(card);
               }
-              //
+             }
               
               //agregamos el metodo addEventListener a los botones de filtrado
 
@@ -198,37 +108,78 @@
               // creamos un array para el carrito
               carrito=[];
               // funcion para agragar productos al carrito
+             
+              
               function addCarrito(id){
-                let prod=menu.datos.find(elem => elem.id==id);
-                carrito.push(prod);
-                console.log(carrito);
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-               
-              }
+
+                fetch('datos.json')
+                .then(response => response.json())
+                .then(data => { console.log(data)
+                
+                  let productoAgregado=data.find(elem => elem.id==id);
+                  let productoenCarrito=carrito.find(elem => elem.id==id);
+                  console.log(carrito);
+                  if (productoenCarrito == undefined){
+                    carrito.push(productoAgregado);
+                   
+                    //Cargar al storage
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+                    Swal.fire({
+                        title: "Ha agregado el producto",
+                     
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        confirmButtonText:"Entendido",
+                    })
+                }else{
+                  
+                    Swal.fire({
+                                title: "Producto ya agregado",
+                              
+                                icon: "info",
+                                timer:4000,
+                                confirmButtonText:"Aceptar",
+                                confirmButtonColor: 'green',
+                                
+                               })
+                       }       
+                   })    
+                }
 
              
 
-           
+              let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+              console.log(productosEnCarrito);
 
               function mostrarCarrito(){
 
           
-                if (carrito.length > 0) {
+                let bodyModal= document.getElementById("bodyModal");
+                bodyModal.classList.add("bodyModal");
+                bodyModal.innerHTML = " "  
+                
                   
                  
-                for (let i of carrito) {
-                  
+                for (let i of productosEnCarrito) {
+
+                       console.log(i.nombre);
                       //creamos un card para mostrar el producto que agramos
                       let card = document.createElement("div");
                       
                       //se agrega a las cards las clases "card",
-                      card.classList.add("card");
+                      card.classList.add("cardCarrito");
                       //cremaos un div imgcontainer
                       let imgContainer = document.createElement("div");
-                    
-                      
+                      imgContainer.classList.add("imgCarrito");
+                      //img tag
+                        let image = document.createElement("img");
+                        image.setAttribute("src", i.img);
+                        imgContainer.appendChild(image);
+                        card.appendChild(imgContainer);
+              
                       let container = document.createElement("div");
-                      container.classList.add("container");
+                      container.classList.add("containerCarrito");
                       //nombre producto
                       let name = document.createElement("h5");
                       name.classList.add("nombreProducto");
@@ -237,33 +188,58 @@
                       //precio 
                       let price = document.createElement("h5");
                       price.innerText = "$" + i.precio;
+                      
                       container.appendChild(price);
                       card.appendChild(container);
-                  
-                      //descripcion
-                      let bodyModal= document.getElementById("bodyModal");
-                  
-                      bodyModal.appendChild(card);
+                      //container botones
                     
-            
+                      let Eliminar = document.createElement("button");
+                      Eliminar.classList.add("botonEliminar");
+                      Eliminar.innerText = "Eliminar";
 
+                     
+                      card.appendChild(Eliminar)
+    
+                      bodyModal.appendChild(card);
+                   
                 }
-               //metodo para calcular el total del carrito de compras
-                const resultado= carrito.reduce((acc, item)=>{
+                
+                totalcarrito(productosEnCarrito)
+                  //container botones
+                  let contenedorBotones = document.createElement("div");
+                  contenedorBotones.classList.add("contenedorBotones")
+                  let botonConfirmar = document.createElement("button");
+                  botonConfirmar.classList.add("botonConfirmar");
+                  botonConfirmar.innerText = "Realizar Pedido";
+
+                  let botonCancelar= document.createElement("button");
+                  botonCancelar.classList.add("botonCancelar");
+                  botonCancelar.innerText = "Cancelar Pedido";
+
+                  contenedorBotones.appendChild(botonConfirmar);
+                  contenedorBotones.appendChild(botonCancelar);
+
+                  bodyModal.appendChild(contenedorBotones)
+             
+              } 
+  
+              //funcion para calcular el total del carrito 
+           function totalcarrito(productosEnCarrito){
+                //metodo para calcular el total del carrito de compras
+                const resultado= productosEnCarrito.reduce((acc, item)=>{
 
                   return acc + item.precio;
                 },0);
-               // creamos un contenedor para el total del carrito de compras
+              // creamos un contenedor para el total del carrito de compras
                 const containerResultado= document.createElement("div");
+               
                 let total = document.createElement("h5");
               
                 total.innerText = "Total a Pagar: " + resultado;
                 containerResultado.appendChild(total);
                 let containerCart = document.getElementById("footerMod");
+                containerCart.innerHTML="";
                 containerCart.appendChild(containerResultado);
-              } 
-              
-
               }
 
             //boton cerrar modal
@@ -276,7 +252,7 @@
             abrir.addEventListener("click", function (e) {
             e.preventDefault();
 
-            if(carrito.length >0){
+            if(productosEnCarrito.length >0){
 
             setTimeout(function () {
 
